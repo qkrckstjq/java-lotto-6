@@ -15,17 +15,29 @@ public class Lotto {
     private final Set<Integer> setMap = new HashSet<>();
     private HashMap<Integer, Integer> result = new HashMap<>();
     private int totalRate = 0;
-    private float returnRate;
+    private double returnRate;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        initResult();
         this.numbers = numbers;
     }
-    public void makeNumbers () {
-        List<Integer> temp = Randoms.pickUniqueNumbersInRange(1,45,6);
-        for(int i = 0; i < temp.size(); i++) {
-            numbers.set(i, temp.get(i));
+    private void initResult () {
+        for(AnswerValue value : AnswerValue.values()) {
+            result.put(value.getNumber(), 0);
         }
+    }
+    public List<Integer> getLotto () {
+        return numbers;
+    }
+    public HashMap<Integer, Integer> getResult () {
+        return result;
+    }
+    public double getReturnRate () {
+        return returnRate;
+    }
+    public static List<Integer> makeNumbers () {
+        return Randoms.pickUniqueNumbersInRange(1,45,6);
     }
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
@@ -37,22 +49,21 @@ public class Lotto {
         for(int number : numbers) {
             Validation.isDuplicate(setMap, number);
             Validation.isNumberRange(number);
-
         }
     }
-    private void setBonus (int number) {
+    public void setBonus (int number) {
         Validation.isDuplicate(setMap, number);
         bonus = number;
     }
 
-    public int countEqual (List<Integer> answer, int bonus) {
+    public int countEqual (List<Integer> answer) {
         int result = 0;
         for(int number : numbers) {
             if(answer.contains(number)) {
                 result++;
             }
         }
-        if(result == ConditionValues.SAME_FIVE.getNumber() && bonus == this.bonus) {
+        if(result == ConditionValues.SAME_FIVE.getNumber() && answer.contains(bonus)) {
             result = ConditionValues.SAME_BONUS.getNumber();
         }
         return result;
@@ -67,5 +78,10 @@ public class Lotto {
     public void calculateRate (int number) {
         totalRate+=AnswerValue.findValue(number);
     }
+    public void updateBenefit (int money) {
+        double temp = (double) totalRate / (double) money;
+        returnRate = temp*100;
+    }
+
     
 }
