@@ -3,7 +3,9 @@ package lotto.view;
 import java.util.Arrays;
 
 public class OutputView {
-
+    public static void printBuyLotto (int number) {
+        System.out.println(number+DefaultMessage.PURCHAS_NUMBER_MESSAGE.getMessage());
+    }
     public static void printArrayToString (int[] arr) {
         System.out.println(Arrays.toString(arr));
     }
