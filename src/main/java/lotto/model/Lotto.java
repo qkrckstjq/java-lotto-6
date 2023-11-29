@@ -1,31 +1,35 @@
 package lotto.model;
 
+import lotto.view.DefaultMessage;
 import lotto.view.ErrorMessage;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
+    private final Set<Integer> setMap = new HashSet<>();
 
     public Lotto(List<Integer> numbers) {
-        validateLength(numbers);
-        validateNumber(numbers);
+        validate(numbers);
         this.numbers = numbers;
     }
 
-    private void validateLength(List<Integer> numbers) {
+    private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ErrorMessage.NUMBERS_LENGTH.getMessage());
         }
+        validateNumbers(numbers);
     }
-
-    private void validateNumber(List<Integer> numbers) {
+    private void validateNumbers (List<Integer> numbers) {
         for(int number : numbers) {
-            if(number < ConditionValues.MIN_LOTTO_NUMBER.getNumber() || number > ConditionValues.MAX_LOTTO_NUMBER.getNumber()) {
-                throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER.getMessage());
-            }
+            Validation.isDuplicate(setMap, number);
+            Validation.isNumberRange(number);
         }
     }
 
-
+    private void validateBonus (int number) {
+        Validation.isDuplicate(setMap, number);
+    }
 }
