@@ -1,6 +1,6 @@
-package lotto.model;
+package lotto.model.Service;
 
-import lotto.view.DefaultMessage;
+import lotto.model.Domain.ConditionValues;
 import lotto.view.ErrorMessage;
 
 import java.util.Set;

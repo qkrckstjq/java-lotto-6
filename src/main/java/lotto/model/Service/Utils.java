@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.Service;
 
 import java.text.DecimalFormat;
 import java.util.List;

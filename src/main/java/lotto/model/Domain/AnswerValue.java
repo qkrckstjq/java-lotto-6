@@ -1,6 +1,4 @@
-package lotto.model;
-
-import org.mockito.stubbing.Answer;
+package lotto.model.Domain;
 
 public enum AnswerValue {
     SAME_THREE(3, 5000),

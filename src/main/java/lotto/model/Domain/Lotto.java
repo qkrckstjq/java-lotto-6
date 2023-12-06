@@ -1,8 +1,8 @@
-package lotto.model;
+package lotto.model.Domain;
 
+import lotto.model.Service.Validation;
 import lotto.view.ErrorMessage;
 import camp.nextstep.edu.missionutils.Randoms;
-import org.mockito.stubbing.Answer;
 
 import java.util.HashMap;
 import java.util.HashSet;

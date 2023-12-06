@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.Domain;
 
 public enum ConditionValues {
     MIN_LOTTO_NUMBER(1),

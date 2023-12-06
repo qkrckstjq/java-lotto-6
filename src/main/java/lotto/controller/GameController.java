@@ -1,11 +1,12 @@
 package lotto.controller;
 
-import jdk.jshell.execution.Util;
-import lotto.model.*;
-import lotto.view.DefaultMessage;
+import lotto.model.Domain.AnswerValue;
+import lotto.model.Domain.ConditionValues;
+import lotto.model.Domain.Lotto;
+import lotto.model.Service.Utils;
+import lotto.model.Service.Validation;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-import org.mockito.stubbing.Answer;
 
 import java.util.*;
 
