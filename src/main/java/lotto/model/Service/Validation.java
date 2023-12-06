@@ -32,7 +32,4 @@ public class Validation {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER.getMessage());
         }
     }
-
-
-
 }

@@ -36,7 +36,8 @@ public class LottoService {
         for(Lotto lotto : lottos) {
             int equalNumber = countEqual(lotto.getLotto(), answer.getLotto(), answer.getBonus());
             if(equalNumber >= ConditionValues.SAME_THREE.getNumber() || equalNumber == ConditionValues.SAME_BONUS.getNumber()) {
-                answer.getResult().put(equalNumber, answer.getResult().get(equalNumber) + 1);
+                HashMap<Integer, Integer> answerResult = answer.getResult();
+                answerResult.put(equalNumber, answerResult.get(equalNumber) + 1);
             }
         }
     }
