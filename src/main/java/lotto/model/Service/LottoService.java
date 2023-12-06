@@ -1,5 +1,6 @@
 package lotto.model.Service;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Domain.AnswerValue;
 import lotto.model.Domain.ConditionValues;
 import lotto.model.Domain.Lotto;
@@ -8,12 +9,16 @@ import java.util.HashMap;
 import java.util.List;
 
 public class LottoService {
-    public void initLottos (int money, Lotto[] lottos) {
+    public static List<Integer> makeNumbers () {
+        return Randoms.pickUniqueNumbersInRange(1,45,6);
+    }
+    public Lotto[] initLottos (int money) {
         int tickets = money / ConditionValues.NUMBER_UNIT.getNumber();
-        lottos = new Lotto[tickets];
+        Lotto[] lottos = new Lotto[tickets];
         for(int i = 0; i < tickets; i++) {
             lottos[i] = new Lotto(Lotto.makeNumbers());
         }
+        return lottos;
     }
     public int countEqual (List<Integer> lotto, List<Integer> answer, int bonus) {
         int result = 0;

@@ -16,7 +16,9 @@ public class Lotto {
     private HashMap<Integer, Integer> result = new HashMap<>();
     private int totalRate = 0;
     private double returnRate;
-
+    public static List<Integer> makeNumbers () {
+        return Randoms.pickUniqueNumbersInRange(1,45,6);
+    }
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         initResult();
@@ -39,9 +41,10 @@ public class Lotto {
     public double getReturnRate () {
         return returnRate;
     }
-    public static List<Integer> makeNumbers () {
-        return Randoms.pickUniqueNumbersInRange(1,45,6);
+    public void setReturnRate (double returnRate) {
+        this.returnRate = returnRate;
     }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ErrorMessage.NUMBERS_LENGTH.getMessage());
@@ -57,6 +60,9 @@ public class Lotto {
     public void setBonus (int number) {
         Validation.isDuplicate(setMap, number);
         bonus = number;
+    }
+    public int getBonus () {
+        return this.bonus;
     }
 
     public int countEqual (List<Integer> answer) {
