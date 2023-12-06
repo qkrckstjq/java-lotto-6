@@ -14,7 +14,6 @@ public class Lotto {
     private int bonus;
     private final Set<Integer> setMap = new HashSet<>();
     private HashMap<Integer, Integer> result = new HashMap<>();
-    private int totalRate = 0;
     private double returnRate;
     public static List<Integer> makeNumbers () {
         return Randoms.pickUniqueNumbersInRange(1,45,6);
@@ -64,33 +63,4 @@ public class Lotto {
     public int getBonus () {
         return this.bonus;
     }
-
-    public int countEqual (List<Integer> answer) {
-        int result = 0;
-        for(int number : numbers) {
-            if(answer.contains(number)) {
-                result++;
-            }
-        }
-        if(result == ConditionValues.SAME_FIVE.getNumber() && answer.contains(bonus)) {
-            result = ConditionValues.SAME_BONUS.getNumber();
-        }
-        return result;
-    }
-    public void updateResult (int number) {
-        boolean min = number >= ConditionValues.SAME_THREE.getNumber();
-        boolean isBonus = number == ConditionValues.SAME_BONUS.getNumber();
-        if(min || isBonus) {
-            result.put(number, result.get(number)+1);
-        }
-    }
-    public void calculateRate (int number) {
-        totalRate+=AnswerValue.findValue(number);
-    }
-    public void updateBenefit (int money) {
-        double temp = (double) totalRate / (double) money;
-        returnRate = temp*100;
-    }
-
-    
 }

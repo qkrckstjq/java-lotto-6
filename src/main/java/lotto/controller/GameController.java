@@ -24,9 +24,9 @@ public class GameController {
         Lotto answer = inputAnswer();
         inputBonus(answer);
 
-        answer.setResult(lottoService.updateResult(lottos, answer.getLotto(), answer.getBonus()));
+        lottoService.updateResult(lottos, answer);
         printResult(answer);
-        printBenefit(answer);
+        printBenefit(lottoService.returnRate(buyPrice, answer.getResult()));
     }
 
     private int inputBuyPrice () {
@@ -43,13 +43,6 @@ public class GameController {
         Validation.isUnitNumber(buyPrice);
         return buyPrice;
     }
-//    private void initLottos (int number) {
-//        int ticket = number / ConditionValues.NUMBER_UNIT.getNumber();
-//        lottos = new Lotto[ticket];
-//        for(int i = 0; i < ticket; i++) {
-//            lottos[i] = new Lotto(Lotto.makeNumbers());
-//        }
-//    }
     private void printLottos (Lotto[] lottos) {
         OutputView.printBuyLotto(lottos.length);
         for(Lotto lotto : lottos) {
@@ -92,15 +85,7 @@ public class GameController {
         Validation.isNumberRange(bonus);
         answer.setBonus(bonus);
     }
-//    private void updateResult () {
-//        for(Lotto lotto : lottos) {
-//            int sameNumber = answer.countEqual(lotto.getLotto());
-//            answer.updateResult(sameNumber);
-//            answer.calculateRate(sameNumber);
-//        }
-//    }
     private void printResult (Lotto answer) {
-//        updateResult();
         OutputView.printResultMessage();
         OutputView.printNewLine();
         printStepResult(answer);
@@ -115,7 +100,7 @@ public class GameController {
             }
         }
     }
-    private void printBenefit (Lotto answer) {
-        OutputView.printWinningRate(answer.getReturnRate());
+    private void printBenefit (Double benefit) {
+        OutputView.printWinningRate(benefit);
     }
 }

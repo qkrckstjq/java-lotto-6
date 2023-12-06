@@ -32,15 +32,13 @@ public class LottoService {
         }
         return result;
     }
-    public HashMap<Integer, Integer> updateResult (Lotto[] lottos, List<Integer> answer, int bonus) {
-        HashMap<Integer, Integer> result = new HashMap<>();
+    public void updateResult (Lotto[] lottos, Lotto answer) {
         for(Lotto lotto : lottos) {
-            int equalNumber = countEqual(lotto.getLotto(), answer, bonus);
+            int equalNumber = countEqual(lotto.getLotto(), answer.getLotto(), answer.getBonus());
             if(equalNumber >= ConditionValues.SAME_THREE.getNumber() || equalNumber == ConditionValues.SAME_BONUS.getNumber()) {
-                result.put(equalNumber, result.get(equalNumber) + 1);
+                answer.getResult().put(equalNumber, answer.getResult().get(equalNumber) + 1);
             }
         }
-        return result;
     }
     public double returnRate (int money, HashMap<Integer, Integer> result) {
         int total = 0;
