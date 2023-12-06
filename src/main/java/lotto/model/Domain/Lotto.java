@@ -33,6 +33,9 @@ public class Lotto {
     public HashMap<Integer, Integer> getResult () {
         return result;
     }
+    public void setResult (HashMap<Integer, Integer> result) {
+        this.result = result;
+    }
     public double getReturnRate () {
         return returnRate;
     }
