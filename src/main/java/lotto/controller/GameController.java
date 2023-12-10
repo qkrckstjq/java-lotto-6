@@ -15,14 +15,15 @@ public class GameController {
     /*private Lotto answer;
     private Lotto[] lottos;*/
     public void run () {
+        InputController inputController = new InputController();
         LottoService lottoService = new LottoService();
 
-        int buyPrice = inputBuyPrice();
+        int buyPrice = inputController.inputBuyPrice();
         Lotto[] lottos = lottoService.initLottos(buyPrice);
         printLottos(lottos);
 
-        Lotto answer = inputAnswer();
-        inputBonus(answer);
+        Lotto answer = inputController.inputAnswer();
+        inputController.inputBonus(answer);
 
         lottoService.updateResult(lottos, answer);
         printResult(answer);

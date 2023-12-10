@@ -40,7 +40,6 @@ public class Lotto {
     public void setReturnRate (double returnRate) {
         this.returnRate = returnRate;
     }
-
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ErrorMessage.NUMBERS_LENGTH.getMessage());
